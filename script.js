@@ -5,13 +5,57 @@ let colorSelected;
 
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
+    // getting table element by ID
+    let table = document.getElementById('grid');
+
+    //creating new row <td>
+    let newRow = table.insertRow();
+
+    //empty grid
+    if(numRows == 0)
+    {
+        let newCell = newRow.insertCell();
+        newCell.onclick = function() { newCell.style.backgroundColor = colorSelected };
+        numRows++;
+        numCols++;
+    }
+    else
+    {
+        // adds columns to match rows
+        for (let i = 0; i < numCols; i++) {
+            let newCell = newRow.insertCell();
+            newCell.onclick = function() { newCell.style.backgroundColor = colorSelected };
+        }
+        numRows++;
+    }   
+
 }
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    // getting table element by ID
+    let table = document.getElementById('grid');
+    
+    //empty grid
+    if(numCols == 0)
+    {
+        addR();
+    }
+    else
+    {
+        //loop through all rows
+        for (let i = 0; i < numRows; i++) {
+
+            //for each row, add a cell 
+            let newCell = table.rows[i].insertCell();
+            newCell.onclick = function() { newCell.style.backgroundColor = colorSelected };
+
+        }
+        numCols++;
+
+    }
 }
+
 
 // Remove a row
 function removeR() {
